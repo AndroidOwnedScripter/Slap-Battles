@@ -29,7 +29,7 @@ Tab:CreateToggle({
 				local folder = workspace:FindFirstChild(folderName)
 				if folder then
 					for _, obj in ipairs(folder:GetChildren()) do
-						if obj.Name == "Bomb" then
+						if obj.Name == "bomb" then
 							pcall(function()
 								obj:Destroy()
 							end)
