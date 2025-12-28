@@ -15,6 +15,22 @@ local Tab = Window:CreateTab("Riftshot", 4483362458)
 -- Variables
 local AutoRiftshot = false
 local folderName = "Sharpshooter Sam's Targets"
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local hrp = character:WaitForChild("HumanoidRootPart")
+
+-- Bouton Riftshot TP
+Tab:CreateButton({
+	Name = "Riftshot TP",
+	Callback = function()
+		local target = workspace:FindFirstChild("Buildings") 
+			and workspace.Buildings:FindFirstChild("Sharpshooter Sam's Island") 
+			and workspace.Buildings["Sharpshooter Sam's Island"]:FindFirstChild("StartTargetPractice")
+		if target then
+			hrp.CFrame = target.CFrame
+		end
+	end
+})
 
 -- Toggle Auto Riftshot
 Tab:CreateToggle({
@@ -29,20 +45,20 @@ Tab:CreateToggle({
 				local folder = workspace:FindFirstChild(folderName)
 				if folder then
 					for _, obj in ipairs(folder:GetChildren()) do
-						if obj.Name == "bomb" then
+						if obj.Name == "Bomb" then
 							pcall(function()
 								obj:Destroy()
 							end)
 						end
 					end
 				end
-				task.wait(0.1) -- petite pause pour pas spammer trop
+				task.wait(0.1)
 			end
 		end)
 	end
 })
 
--- Petit texte
+-- Petit texte Discord
 Tab:CreateParagraph({
 	Title = "Discord",
 	Content = "find op scripts"
