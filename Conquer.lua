@@ -25,11 +25,20 @@ Tab:CreateToggle({
 	Callback = function(Value)
 		AutoConquer = Value
 
-		if not AutoConquer then return end
+		local character = player.Character or player.CharacterAdded:Wait()
+		local humanoidr = character:WaitForChild("HumanoidRootPart")
+		local bowlPart = workspace.Map.CoreAssets.Bowl.bowl
+
+		-- 🔒 Bloquer / débloquer le joueur dans la bowl
+		if AutoConquer then
+			humanoidr.CFrame = bowlPart.CFrame
+			humanoidr.Anchored = true
+		else
+			humanoidr.Anchored = false
+			return
+		end
 
 		task.spawn(function()
-			local character = player.Character or player.CharacterAdded:Wait()
-			local humanoidr = character:WaitForChild("HumanoidRootPart")
 			local ReplicatedStorage = gameRef:GetService("ReplicatedStorage")
 			local Workspace = gameRef:GetService("Workspace")
 
