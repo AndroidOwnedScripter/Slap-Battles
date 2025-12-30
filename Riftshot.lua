@@ -10,7 +10,18 @@ local Window = Rayfield:CreateWindow({
 	}
 })
 
-local Tab = Window:CreateTab("Riftshot", 4483362458)
+local Tab = Window:CreateTab("Barzil", 4483362458)
+
+Tab:CreateButton({
+	Name = "TP Barzil",
+	Callback = function()
+		game:GetService("TeleportService"):Teleport(
+			7234087065,
+			game.Players.LocalPlayer
+		)
+	end
+})
+
 
 -- Variables
 local AutoRiftshot = false
